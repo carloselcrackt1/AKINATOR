@@ -1,4 +1,11 @@
+binaryTree\BinaryTree.class
 ec\edu\uees\akinatorproject\App.class
 ec\edu\uees\akinatorproject\LoadingScreen.class
 ec\edu\uees\akinatorproject\ThreadLoading.class
+ec\edu\uees\akinatorproject\scenario\ThreadMainAnimation.class
+binaryTree\BinaryTree$Node.class
+ec\edu\uees\akinatorproject\MainScreenController.class
+questionAnswerClass\Character.class
 module-info.class
+ec\edu\uees\akinatorproject\scenario\ThreadFog.class
+questionAnswerClass\Question.class

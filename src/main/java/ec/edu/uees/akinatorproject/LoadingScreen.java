@@ -1,5 +1,6 @@
 package ec.edu.uees.akinatorproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
@@ -13,7 +14,11 @@ public class LoadingScreen implements Initializable {
     private ImageView loadingLogo;
     
     public void switchToMainScreen(){
-        return;
+        try {
+            App.setRoot("mainScreen");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
     @Override

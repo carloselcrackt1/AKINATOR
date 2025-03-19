@@ -11,6 +11,7 @@ public class ThreadLoading implements Runnable {
     public void run() {
         try {
             Thread.sleep(3000);
+            ls.switchToMainScreen();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

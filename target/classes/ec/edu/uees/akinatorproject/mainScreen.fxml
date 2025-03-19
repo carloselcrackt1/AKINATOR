@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" styleClass="loading__background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1240.0" styleClass="loading__background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.uees.akinatorproject.MainScreenController">
    <children>
       <HBox prefHeight="776.0" prefWidth="1024.0">
          <children>
-            <VBox prefHeight="720.0" prefWidth="676.0" />
+            <VBox alignment="BOTTOM_CENTER" prefHeight="680.0" prefWidth="846.0">
+               <children>
+                  <ImageView fx:id="Akinator" fitHeight="168.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" translateY="125.0">
+                     <image>
+                        <Image url="@main/frame_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="473.0" fitWidth="554.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@main/akinator_name.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="fog1" fitHeight="11.0" fitWidth="14.0" opacity="0.78" pickOnBounds="true" preserveRatio="true" scaleX="30.0" scaleY="30.0" translateX="-700.0" translateY="30.0">
+                     <image>
+                        <Image url="@main/nube1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="fog2" fitHeight="11.0" fitWidth="14.0" opacity="0.78" pickOnBounds="true" preserveRatio="true" scaleX="30.0" scaleY="30.0" translateX="700.0">
+                     <image>
+                        <Image url="@main/nube1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="fog3" fitHeight="11.0" fitWidth="14.0" opacity="0.78" pickOnBounds="true" preserveRatio="true" scaleX="40.0" scaleY="40.0" translateX="200.0" translateY="40.0">
+                     <image>
+                        <Image url="@main/nube1.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="100.0" />
+               </padding></VBox>
             <VBox prefHeight="720.0" prefWidth="353.0" styleClass="main-options__background" />
          </children>
          <padding>
