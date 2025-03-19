@@ -7,9 +7,7 @@ import java.util.Comparator;
  * @author Carlos Auqui
  */
 public class BinaryTree <E> {
-    
     private Node<E> root;
-    private Comparator<E> f; 
 
     class Node<E>{
         E data;
@@ -21,19 +19,19 @@ public class BinaryTree <E> {
         }
     }
 
-   
-    public BinaryTree(Comparator<E> f){
-        this.f = f;
+   // hay que arreglar el arbol
+    public BinaryTree(Node<E> e){
+        this.root = e;
     }
 
-    public boolean add(E e){
-        if(e ==null) return false;
-        this.root = add(e, this.root);
+    /*public boolean add(E q, E a){
+        if(q ==null || a == null) return false;
+        this.root = add(q,a,this.root);
         return true;
         
     }
-    private Node<E> add(E e, Node<E> p){
-        if(p == null){
+        private Node<E> add(E e,E i, Node<E> p){
+        if(p.right == null || p.left == null){
             p = new Node<>(e); // representa si la raiz es nula o el subarbol esta vacip
         }
 
@@ -44,7 +42,7 @@ public class BinaryTree <E> {
             p.left = add(e, p.left);
         }
         return p;
-    }
+    }*/
 
     public void preOrden(){
         preOrden(this.root);
@@ -117,7 +115,7 @@ public class BinaryTree <E> {
 
     }
 
-    public boolean estaEnRango(E min, E max) 
+    /*public boolean estaEnRango(E min, E max) 
     {
         if(f.compare(min, max) < 0)
             return estaEnRango(this.root,min,max);  
@@ -145,7 +143,7 @@ public class BinaryTree <E> {
                 return false;
             }
         }
-    }
+    }*/
 
 }
 
