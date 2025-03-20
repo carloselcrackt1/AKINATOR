@@ -1,8 +1,11 @@
 package fileClass;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Stack;
 import questionAnswerClass.Question;
 import questionAnswerClass.Student;
@@ -14,10 +17,6 @@ import questionAnswerClass.Student;
 public class StackFileLoader {
     private Stack <Node> akiStack = new Stack<>();
 
-    public Stack <Node> getAkiStack() {
-        return akiStack;
-    }
-     
     class Node<E>{
         E data;
         Node<E> left;
@@ -27,10 +26,10 @@ public class StackFileLoader {
             this.data = data;
         }
     }
-    
-    public void fileLoader(String filename){
+    // funcion que va a devolver el stack con un solo nodo
+    public void fileLoader(String fileName){
         try{
-            FileReader akiFile = new FileReader("PersonajesyPreguntas.txt");
+            FileReader akiFile = new FileReader(fileName);
             BufferedReader br = new BufferedReader (akiFile); 
             while(br.readLine() != null){
                 if(!br.readLine().contains("?")){
@@ -42,10 +41,29 @@ public class StackFileLoader {
                     qst.left = akiStack.pop();
                     akiStack.push(qst);
                 }
-            }   
+            }
+            br.close();
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
     
     }
+    // funcion que recibira una lista actualizada de los elementos.
+    public void fileWr(ArrayList<String> listaArbol, String fileName){
+        try{
+            File fl = new File(fileName);
+            FileWriter fwr = new FileWriter(fileName,false);
+            for(int i = 0; i<listaArbol.size(); i++){
+                fwr.write(listaArbol.get(i));
+            }
+            fwr.close();
+        }catch(IOException t){
+            System.out.println(t.getMessage());
+        }
+    }
+    
+    public Stack <Node> getAkiStack() {
+        return akiStack;
+    }
+     
 }
