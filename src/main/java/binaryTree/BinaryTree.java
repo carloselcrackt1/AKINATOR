@@ -1,5 +1,6 @@
 package binaryTree;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -44,65 +45,24 @@ public class BinaryTree <E> {
         return p;
     }*/
 
-    public void preOrden(){
-        preOrden(this.root);
-        System.out.println();
+
+    public ArrayList<E> posOrden(){
+        ArrayList<E> treeList = new ArrayList<>();
+        posOrden(this.root,treeList);
+        return treeList;
     }
 
     // funciones que consultan no devuelven nodo
-    private void preOrden(Node<E> p){
+    private void posOrden(Node<E> p, ArrayList<E>treeList){
+        
         if(p!=null)
         {
-            System.out.print(p.data+" ");
-            preOrden(p.left); 
-            preOrden(p.right); 
+            posOrden(p.left,treeList); 
+            posOrden(p.right,treeList); 
+            treeList.add(p.data);
         }
     }
 
-    public void posOrden(){
-        posOrden(this.root);
-        System.out.println(); 
-    }
-
-    // funciones que consultan no devuelven nodo
-    private void posOrden(Node<E> p){
-        if(p!=null)
-        {
-            posOrden(p.left); 
-            posOrden(p.right); 
-            System.out.print(p.data+" ");
-        }
-    }
-
-    public void enOrden(){
-        enOrden(this.root);
-        System.out.println(); 
-    }
-
- 
-    private void enOrden(Node<E> p){
-        if(p!=null)
-        {
-            enOrden(p.left); 
-            System.out.print(p.data+" ");
-            enOrden(p.right); 
-           
-        }
-    }
-
-    public int countLeaves(){
-        return countLeaves(this.root);
-    }
-
-    private int countLeaves(Node<E> p ){
-        if(p==null){
-            return 0; 
-        }
-        else if (p.left == null && p.right ==null)
-            return 1;
-        return countLeaves(p.left)+countLeaves(p.right);
-
-    }
 
     public int size(){
         return size(this.root);
@@ -114,36 +74,5 @@ public class BinaryTree <E> {
         return 1 + size(p.left) + size(p.right);
 
     }
-
-    /*public boolean estaEnRango(E min, E max) 
-    {
-        if(f.compare(min, max) < 0)
-            return estaEnRango(this.root,min,max);  
-        else
-            System.out.println("el rango debe ser de menor a mayor");
-            return false;
-    }
-
-    private boolean estaEnRango(Node<E> p, E min , E max){
-
-        if( p == null){ 
-            return false;
-        }
-
-        if( (f.compare(p.data, min) >= 0 ) && (f.compare(p.data,max) <= 0) )
-            return true;
-
-        else{
-            if(f.compare(p.data,max) > 0 )
-                return estaEnRango(p.left, min, max);
-            else if(f.compare(p.data,max) < 0){
-                return estaEnRango(p.right, min, max);
-            }
-            else{
-                return false;
-            }
-        }
-    }*/
-
 }
 
