@@ -7,63 +7,80 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
-import questionAnswerClass.Question;
-import questionAnswerClass.Student;
 
 /**
  *
  * @author Carlos Auqui
  */
-public class StackFileLoader {
-    private Stack <Node> akiStack = new Stack<>();
 
-    class Node<E>{
-        E data;
-        Node<E> left;
-        Node<E> right;
-
-        Node(E data){
-            this.data = data;
-        }
+ class Nodo {
+    String data;
+    Nodo left, right;
+    
+    public Nodo(String data) {
+        this.data = data;
     }
-    // funcion que va a devolver el stack con un solo nodo
-    public void fileLoader(String fileName){
-        try{
-            FileReader akiFile = new FileReader(fileName);
-            BufferedReader br = new BufferedReader (akiFile); 
-            while(br.readLine() != null){
-                if(!br.readLine().contains("?")){
-                    Node<Student> st = new Node(br.readLine().trim());
-                    akiStack.push(st);
-                }else{
-                    Node<Question> qst = new Node(br.readLine().trim());
-                    qst.right = akiStack.pop();
-                    qst.left = akiStack.pop();
-                    akiStack.push(qst);
-                }
+}
+
+public class StackFileLoader{
+    private Stack<Nodo> akiStack;
+    
+    public StackFileLoader() {
+        this.akiStack = new Stack<>();
+    }
+    
+    public void fileReader(String fileName) {
+        try {
+            FileReader fr = new FileReader(fileName);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null) {
+                lineProcess(line);
             }
             br.close();
-        }catch(IOException e){
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    
     }
-    // funcion que recibira una lista actualizada de los elementos.
-    public void fileWr(ArrayList<String> listaArbol, String fileName){
+
+    public void fileWr(ArrayList<String> treeList, String fileName){
         try{
             File fl = new File(fileName);
-            FileWriter fwr = new FileWriter(fileName,false);
-            for(int i = 0; i<listaArbol.size(); i++){
-                fwr.write(listaArbol.get(i));
+            FileWriter fwr = new FileWriter(fl,false);
+            for(int i = 0; i<treeList.size(); i++){
+                fwr.write(treeList.get(i) + "/n");
             }
             fwr.close();
         }catch(IOException t){
             System.out.println(t.getMessage());
         }
     }
-    
-    public Stack <Node> getAkiStack() {
-        return akiStack;
+    // separa nodos preguntas de personajes
+    private void lineProcess(String line) {
+        if (line.contains("?")) { 
+            Nodo question = new Nodo(line);
+            if (!akiStack.isEmpty()) 
+                question.right = akiStack.pop();
+            if (!akiStack.isEmpty()) 
+                question.left = akiStack.pop();
+            akiStack.push(question);
+        } else { // Es un personaje
+            akiStack.push(new Nodo(line));
+        }
     }
-     
+    
+    public Nodo getAkiStackNode() {
+        if (akiStack.isEmpty())
+            return null;
+        else
+            return akiStack.peek();
+    }
+    
+    public void SoutTree(Nodo nodo, String prefix) {
+        if (nodo != null) {
+            System.out.println(prefix + nodo.data);
+            SoutTree(nodo.left, prefix + "  ");
+            SoutTree(nodo.right, prefix + "  ");
+        }
+    }
 }
