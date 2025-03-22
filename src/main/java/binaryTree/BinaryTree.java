@@ -1,59 +1,60 @@
 package binaryTree;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.ListIterator;
+import nodeG.node;
+
 
 /**
  *
  * @author Carlos Auqui
- */
+ */ 
 public class BinaryTree <E> {
-    private Node<E> root;
-
-    class Node<E>{
-        E data;
-        Node<E> left;
-        Node<E> right;
-
-        Node(E data){
-            this.data = data;
-        }
-    }
+   private node<E> root;
+    private GenericArrayList<Boolean> ruta;
 
    // hay que arreglar el arbol
-    public BinaryTree(Node<E> e){
-        this.root = e;
+    public BinaryTree(node<E> root){
+        this.root = root;
     }
 
-    /*public boolean add(E q, E a){
-        if(q ==null || a == null) return false;
-        this.root = add(q,a,this.root);
-        return true;
+    public void add(E q, E r, Boolean ubiR){
+        if(q ==null && r == null) 
+            throw new UnsupportedOperationException("data nula");
+        else{
+            ListIterator<Boolean> rutaIteradora = ruta.listIterator();
+            this.root = add(q,r,this.root,rutaIteradora,ubiR);
+        }
         
     }
-        private Node<E> add(E e,E i, Node<E> p){
-        if(p.right == null || p.left == null){
-            p = new Node<>(e); // representa si la raiz es nula o el subarbol esta vacip
+    private node<E> add(E p, E c, node<E> t, ListIterator<Boolean> decision,Boolean ubiR){
+        if (!decision.hasNext()) { // aqui estamos en el ultimo nodo 
+            node<E> temp = t;
+            t = new node<E>(p);
+            if (ubiR) {
+                t.right = new node<E>(c);
+                t.left = temp;
+            }else{
+                t.right =  temp;
+                t.left = new node<E>(c);
+            }
+        }else{
+            Boolean nextDecision= decision.next();
+            if(nextDecision)
+                t.right = add(p, c, t.right, decision, ubiR);
+            else
+                t.left = add(p, c, t.left, decision, ubiR);
         }
+        return t;
+    }
 
-        if (f.compare(e, p.data)>0) {
-            p.right = add(e, p.right);
-        }
-        else if(f.compare(e, p.data)<0){
-            p.left = add(e, p.left);
-        }
-        return p;
-    }*/
-
-
+    // funcion que me devolvera un arraylist en posOrden de los elementos del arbol(servira para actualizar el archivo)
     public ArrayList<E> posOrden(){
         ArrayList<E> treeList = new ArrayList<>();
         posOrden(this.root,treeList);
         return treeList;
     }
-
-    // funciones que consultan no devuelven nodo
-    private void posOrden(Node<E> p, ArrayList<E>treeList){
+    private void posOrden(node<E> p, ArrayList<E>treeList){
         
         if(p!=null)
         {
@@ -63,16 +64,23 @@ public class BinaryTree <E> {
         }
     }
 
-
-    public int size(){
-        return size(this.root);
+ 
+    public void decisionJugador(Boolean decision){
+        if (this.ruta == null){
+            this.ruta = new GenericArrayList();
+        }
+        ruta.add(decision);
     }
 
-    private int size(Node<E> p){
-        if(p==null)
-            return 0;
-        return 1 + size(p.left) + size(p.right);
-
+    public node<E> getRoot() {
+        return root;
     }
+
+    public GenericArrayList<Boolean> getRuta() {
+        return ruta;
+    }
+
+    
 }
+
 
