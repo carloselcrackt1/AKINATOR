@@ -12,8 +12,8 @@
 
 # Java FX and Media
 target/
-videoplayback.mp4
-videoplayback_fetl.mp4
+**/videoplayback.mp4
+**/videoplayback_fetl.mp4
 
 # Package Files #
 *.jar
