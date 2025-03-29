@@ -11,9 +11,9 @@
 .mtj.tmp/
 
 # Java FX and Media
-target/
+**/target
 **/videoplayback.mp4
-**/videoplayback_fetl.mp4
+**/videoplayback_felt.mp4
 
 # Package Files #
 *.jar
