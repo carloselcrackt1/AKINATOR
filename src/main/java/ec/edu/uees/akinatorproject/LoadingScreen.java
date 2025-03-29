@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -23,15 +24,11 @@ public class LoadingScreen implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Thread t1 = new Thread(new ThreadLoading(this));
-        t1.start();
-        TranslateTransition logoAnimation = new TranslateTransition();
-        logoAnimation.setNode(loadingLogo);
-        logoAnimation.setDuration(Duration.millis(500));
-        logoAnimation.setCycleCount(TranslateTransition.INDEFINITE);
-        logoAnimation.setByY(-20); 
-        logoAnimation.setAutoReverse(true);
-        logoAnimation.play();
+        Platform.runLater(() -> {
+            Thread t1 = new Thread(new ThreadLoading(this));
+            t1.start();
+        });
+        
     }
         
 }

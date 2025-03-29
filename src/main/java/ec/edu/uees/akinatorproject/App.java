@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -17,8 +18,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        new Thread(() -> AkinatorMusic.startMusic()).start();
         scene = new Scene(loadFXML("loadingScreen"), 1240, 720);
+        Image icon = new Image(getClass().getResourceAsStream("/ec/edu/uees/akinatorproject/assets/icon.png"));
         stage.setScene(scene);
+        stage.getIcons().add(icon);
         stage.show();
     }
 

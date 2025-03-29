@@ -5,43 +5,84 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1240.0" styleClass="loading__background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.uees.akinatorproject.MainScreenController">
    <children>
+      <MediaView fx:id="balatroBackground" fitHeight="1.0" fitWidth="1.0" scaleX="1500.0" scaleY="750.0" translateX="600.0" translateY="360.0" />
       <HBox prefHeight="776.0" prefWidth="1024.0">
          <children>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="680.0" prefWidth="846.0">
-               <children>
-                  <ImageView fx:id="Akinator" fitHeight="168.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" translateY="125.0">
-                     <image>
-                        <Image url="@main/frame_1.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="473.0" fitWidth="554.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@main/akinator_name.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="fog1" fitHeight="11.0" fitWidth="14.0" opacity="0.78" pickOnBounds="true" preserveRatio="true" scaleX="30.0" scaleY="30.0" translateX="-700.0" translateY="30.0">
-                     <image>
-                        <Image url="@main/nube1.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="fog2" fitHeight="11.0" fitWidth="14.0" opacity="0.78" pickOnBounds="true" preserveRatio="true" scaleX="30.0" scaleY="30.0" translateX="700.0">
-                     <image>
-                        <Image url="@main/nube1.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="fog3" fitHeight="11.0" fitWidth="14.0" opacity="0.78" pickOnBounds="true" preserveRatio="true" scaleX="40.0" scaleY="40.0" translateX="200.0" translateY="40.0">
-                     <image>
-                        <Image url="@main/nube1.png" />
-                     </image>
-                  </ImageView>
-               </children>
+            <VBox alignment="TOP_CENTER" prefHeight="678.0" prefWidth="1282.0">
                <padding>
-                  <Insets bottom="100.0" />
-               </padding></VBox>
-            <VBox prefHeight="720.0" prefWidth="353.0" styleClass="main-options__background" />
+                  <Insets top="50.0" />
+               </padding>
+               <children>
+                  <ImageView fx:id="akinatorLogo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="4.0" scaleY="4.0" translateX="-30.0" translateY="150.0">
+                     <image>
+                        <Image url="@assets/menu/balator.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="akinatorLogo1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="5.0" scaleY="5.0" translateY="410.0">
+                     <image>
+                        <Image url="@assets/menu/menuBar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="playButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#play" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4" translateX="-351.0" translateY="350.0">
+                     <image>
+                        <Image url="@assets/menu/playButton.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="optionsButton" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="-104.0" translateY="270.0">
+                     <image>
+                        <Image url="@assets/menu/optionsButton.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="quitButton" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="106.0" translateY="189.0">
+                     <image>
+                        <Image url="@assets/menu/quitButton.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="collectionButton" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4" translateX="352.0" translateY="105.0">
+                     <image>
+                        <Image url="@assets/menu/collectionButton.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="akinatorLogo111111" fitHeight="150.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" translateX="468.0" translateY="-78.0">
+                     <image>
+                        <Image url="@assets/menu/githubLink.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="blurEffect" disable="true" fitHeight="150.0" fitWidth="10.0" opacity="0.0" preserveRatio="true" scaleX="150.0" scaleY="110.0" translateY="-250.0">
+                     <image>
+                        <Image url="@assets/menu/blurEffect.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="subMenuBackground" fitHeight="150.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" scaleX="70.0" scaleY="70.0" translateY="500.0">
+                     <image>
+                        <Image url="@assets/menu/playSubMenu.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="subMenuBack" fitHeight="150.0" fitWidth="10.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true" scaleX="60.0" scaleY="60.0" translateY="770.0">
+                     <image>
+                        <Image url="@assets/menu/playSubMenu/playSubMenu-back.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="subMenuPlay" fitHeight="150.0" fitWidth="10.0" onMouseClicked="#playClassicMode" pickOnBounds="true" preserveRatio="true" scaleX="30.0" scaleY="30.0" translateY="675.0">
+                     <image>
+                        <Image url="@assets/menu/playSubMenu/playSubMenu-play.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="subMenuCardsBackground" fitHeight="150.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" scaleX="50.0" scaleY="45.0" translateY="350.0">
+                     <image>
+                        <Image url="@assets/menu/playSubMenu/playSubMeny-cardsBackground.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="subMenuClassic" fitHeight="150.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" scaleX="45.0" scaleY="45.0" translateY="346.0">
+                     <image>
+                        <Image url="@assets/menu/playSubMenu/playSubMenu-classicMode.png" />
+                     </image>
+                  </ImageView>
+               </children></VBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
