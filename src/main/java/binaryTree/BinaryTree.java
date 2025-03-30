@@ -3,6 +3,7 @@ package binaryTree;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import nodeG.node;
+import questionAnswerClass.QAndA;
 
 
 /**
@@ -12,9 +13,11 @@ import nodeG.node;
 public class BinaryTree <E> {
     private node<E> root;
     private GenericArrayList<Boolean> ruta;
+    private node<E> tmpRoot;
 
     public BinaryTree(node<E> root){
         this.root = root;
+        this.tmpRoot = root;
     }
 
     public void add(E q, E r, Boolean ubiR){
@@ -62,8 +65,21 @@ public class BinaryTree <E> {
             treeList.add(p.data);
         }
     }
+    
+    public E getAQ(){
+        return tmpRoot.getData();
+    }
 
- 
+    public void jugar(boolean choice) {
+        if (choice) {
+            tmpRoot = tmpRoot.right;
+            decisionJugador(true);
+        } else{
+            tmpRoot = tmpRoot.left;
+            decisionJugador(false);
+        }
+    }
+    
     public void decisionJugador(Boolean decision){
         if (this.ruta == null){
             this.ruta = new GenericArrayList();

@@ -38,13 +38,21 @@ public class PlayScreenController implements Initializable{
     private ImageView noOption;
     @FXML
     private Label lblAsk;
+    @FXML
+    private ImageView handSi;
+    @FXML
+    private ImageView handNo;
+    @FXML
+    private ImageView clownHead;
     
     //INTERNAL VARIABLES
     private MediaPlayer mp;
     private boolean cardFlag = true;
     private String actualCard;
-    private StackFile sf;
-    private BinaryTree bt;
+    private StackFile sf = new StackFile();
+    private BinaryTree<QAndA> bt;
+    private boolean isTalking;
+    private ClowAnimation ca = new ClowAnimation(this);
     
     //CARDS FUNCTIONS
     public void upCard(){
@@ -75,11 +83,46 @@ public class PlayScreenController implements Initializable{
     // QUESTION FUNCTIONS
     
     public void chooseSiOption(){
-        
+        Thread t =new Thread(ca);
+        t.start();
+        bt.jugar(true);
+        lblAsk.setText(bt.getAQ().getCharacterName());
+    }
+    
+    public void chooseNoOption(){
+        Thread t =new Thread(ca);
+        t.start();
+        bt.jugar(false);
+        lblAsk.setText(bt.getAQ().getCharacterName());
     }
 
+    // OPTIONAL FUNCTIONS
+    
+    public void clownAnimation(){
+        if(isTalking){
+            Image img = new Image(getClass().getResource("/ec/edu/uees/akinatorproject/assets/sprites/clown_1.png").toString());
+            clownHead.setImage(img);
+            isTalking = false;
+        } else {
+            Image img = new Image(getClass().getResource("/ec/edu/uees/akinatorproject/assets/sprites/clown_2.png").toString());
+            clownHead.setImage(img);
+            isTalking = true;
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TranslateTransition handSiAction = new TranslateTransition(Duration.millis(2000), handSi);
+        handSiAction.setDelay(Duration.millis(100));
+        handSiAction.setToY(325);
+        handSiAction.setCycleCount(TranslateTransition.INDEFINITE);
+        handSiAction.setAutoReverse(true);
+        TranslateTransition handNoAction = new TranslateTransition(Duration.millis(2000), handNo);
+        handNoAction.setCycleCount(TranslateTransition.INDEFINITE);
+        handNoAction.setAutoReverse(true);
+        handNoAction.setToY(315);
+        handSiAction.play();
+        handNoAction.play();
         sf.fileReader();
         bt = new BinaryTree(sf.getAkiStackNode());
         try {
@@ -104,9 +147,9 @@ public class PlayScreenController implements Initializable{
                         if(cardFlag){
                             Image imgToChange = new Image(getClass().getResource("/ec/edu/uees/akinatorproject/assets/cards/" + q.getIcon()).toString());
                             this.cardFlag = false;
-                            if(cardInformation.getTranslateY() == 350){
-                                cardInformationUp.setToY(800);
-                                cardInformationDown.setToY(350);
+                            if(cardInformation.getTranslateX() == -464){
+                                cardInformationUp.setToX(-800);
+                                cardInformationDown.setToX(-464);
                                 actualCard = q.getIcon();
                                 SequentialTransition st = new SequentialTransition(cardInformationUp, cardInformationDown);                    
                                 st.play();
@@ -117,7 +160,7 @@ public class PlayScreenController implements Initializable{
                             }else{
                                 actualCard = q.getIcon();
                                 cardInformation.setImage(imgToChange);
-                                cardInformationUp.setToY(350);
+                                cardInformationUp.setToX(-464);
                                 cardInformationUp.play();
                                 cardInformationUp.setOnFinished(eh -> this.cardFlag = true);
                             }
@@ -143,7 +186,7 @@ public class PlayScreenController implements Initializable{
         balatroBackground.setMediaPlayer(mp);
         mp.play();
         
-        lblAsk.setText();
+        lblAsk.setText(bt.getAQ().getCharacterName());
     }
     
     

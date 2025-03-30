@@ -19,7 +19,6 @@ public class StackFile {
     public void fileReader() {
         InputStream input = getClass().getResourceAsStream("/data/tree.ser");
         try (ObjectInputStream ois = new ObjectInputStream(input)) {
-
             while (true) {
                 try {
                     QAndA qAndA = (QAndA) ois.readObject();
@@ -53,6 +52,7 @@ public class StackFile {
         if (akiStack.isEmpty())
             return null;
         else
+            //System.out.println(akiStack.peek().right.getData().getCharacterName());
             return akiStack.peek();
     }  
 }
