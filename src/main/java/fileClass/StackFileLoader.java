@@ -1,29 +1,22 @@
 package fileClass;
 
+import binaryTree.GenericArrayList;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Stack;
+import nodeG.node;
 
 /**
  *
  * @author Carlos Auqui
  */
 
- class Nodo {
-    String data;
-    Nodo left, right;
-    
-    public Nodo(String data) {
-        this.data = data;
-    }
-}
 
-public class StackFileLoader{
-    private Stack<Nodo> akiStack;
+public class StackFileLoader<E>{
+    private Stack<node<E>> akiStack;
     
     public StackFileLoader() {
         this.akiStack = new Stack<>();
@@ -43,12 +36,12 @@ public class StackFileLoader{
         }
     }
 
-    public void fileWr(ArrayList<String> treeList, String fileName){
+    public void fileWr(GenericArrayList<E> treeList, String fileName){
         try{
             File fl = new File(fileName);
             FileWriter fwr = new FileWriter(fl,false);
             for(int i = 0; i<treeList.size(); i++){
-                fwr.write(treeList.get(i) + "/n");
+                fwr.write(treeList.get(i) +"\n");
             }
             fwr.close();
         }catch(IOException t){
@@ -58,29 +51,22 @@ public class StackFileLoader{
     // separa nodos preguntas de personajes
     private void lineProcess(String line) {
         if (line.contains("?")) { 
-            Nodo question = new Nodo(line);
+            node<E> question = new node(line);
             if (!akiStack.isEmpty()) 
                 question.right = akiStack.pop();
             if (!akiStack.isEmpty()) 
                 question.left = akiStack.pop();
             akiStack.push(question);
-        } else { // Es un personaje
-            akiStack.push(new Nodo(line));
+        } else { //  personaje
+            node<E> student = new node(line);
+            akiStack.push(student);
         }
     }
     
-    public Nodo getAkiStackNode() {
+    public node<E> getAkiStackNode() {
         if (akiStack.isEmpty())
             return null;
         else
             return akiStack.peek();
-    }
-    
-    public void SoutTree(Nodo nodo, String prefix) {
-        if (nodo != null) {
-            System.out.println(prefix + nodo.data);
-            SoutTree(nodo.left, prefix + "  ");
-            SoutTree(nodo.right, prefix + "  ");
-        }
-    }
+    }    
 }
