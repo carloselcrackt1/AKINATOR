@@ -10,10 +10,9 @@ import nodeG.node;
  * @author Carlos Auqui
  */ 
 public class BinaryTree <E> {
-   private node<E> root;
+    private node<E> root;
     private GenericArrayList<Boolean> ruta;
 
-   // hay que arreglar el arbol
     public BinaryTree(node<E> root){
         this.root = root;
     }
