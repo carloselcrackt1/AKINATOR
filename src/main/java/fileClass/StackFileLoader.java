@@ -6,28 +6,48 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.Stack;
 import nodeG.node;
+import questionAnswerClass.QAndA;
 
 /**
  *
  * @author Carlos Auqui
  */
+/*
 
-
-public class StackFileLoader<E>{
-    private Stack<node<E>> akiStack;
+public class StackFileLoader<E> {
+    private Stack<node<QAndA>> akiStack;
     
     public StackFileLoader() {
         this.akiStack = new Stack<>();
     }
-    
-    public void fileReader(String fileName) {
-        try {
-            FileReader fr = new FileReader(fileName);
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            while ((line = br.readLine()) != null) {
+        
+ArrayList<QAndA> qAndAs = new ArrayList<>();
+        InputStream input = getClass().getResourceAsStream("/data/tree.ser");
+        try (ObjectInputStream ois = new ObjectInputStream(input)) {
+            while (true) {
+                try {
+                    QAndA qAndA = (QAndA) ois.readObject();
+                    qAndAs.add(qAndA);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+            ois.close();
+    public void fileReader(){
+        InputStream input = getClass().getResourceAsStream("/data/tree.ser");
+        try (ObjectInputStream ois = new ObjectInputStream(input)) {
+            while (true) {
+                try {
+                    QAndA qAndA = (QAndA) ois.readObject();
+                    qAndAs.add(qAndA);
+                } catch (EOFException e) {
+                    break;
+                }
+}
                 lineProcess(line);
             }
             br.close();
@@ -48,6 +68,7 @@ public class StackFileLoader<E>{
             System.out.println(t.getMessage());
         }
     }
+    
     // separa nodos preguntas de personajes
     private void lineProcess(String line) {
         if (line.contains("?")) { 
@@ -70,3 +91,4 @@ public class StackFileLoader<E>{
             return akiStack.peek();
     }    
 }
+*/

@@ -1,7 +1,8 @@
 package ec.edu.uees.akinatorproject;
 
+import binaryTree.BinaryTree;
+import fileClass.StackFile;
 import java.io.EOFException;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -9,15 +10,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.animation.Animation;
-import javafx.animation.Interpolator;
-import javafx.animation.ParallelTransition;
-import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -35,12 +32,19 @@ public class PlayScreenController implements Initializable{
     private HBox hboxCards;
     @FXML
     private ImageView cardInformation;
+    @FXML
+    private ImageView siOption;
+    @FXML
+    private ImageView noOption;
+    @FXML
+    private Label lblAsk;
     
     //INTERNAL VARIABLES
     private MediaPlayer mp;
     private boolean cardFlag = true;
     private String actualCard;
-    
+    private StackFile sf;
+    private BinaryTree bt;
     
     //CARDS FUNCTIONS
     public void upCard(){
@@ -67,9 +71,17 @@ public class PlayScreenController implements Initializable{
        }
         return qAndAs;
     }
+    
+    // QUESTION FUNCTIONS
+    
+    public void chooseSiOption(){
+        
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        sf.fileReader();
+        bt = new BinaryTree(sf.getAkiStackNode());
         try {
             ArrayList<QAndA> qAndAs = calculateCuantityCards();
             for(QAndA q: qAndAs){
@@ -131,6 +143,7 @@ public class PlayScreenController implements Initializable{
         balatroBackground.setMediaPlayer(mp);
         mp.play();
         
+        lblAsk.setText();
     }
     
     
