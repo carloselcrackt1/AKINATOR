@@ -25,12 +25,29 @@ public class GenericArrayList<T> implements Iterable<T> {
         }
         array[size++] = data;
     }
+    public T get(int index) {
+        if(this.isEmpty()){
+            throw new UnsupportedOperationException("ista vacia");
+        }
+        if(index>=0 && index<size){
+            return array[index];
+        }else{
+            throw new ArrayIndexOutOfBoundsException("indice fuera de rango");
+        }
+    }
 
     private void resize() {
         @SuppressWarnings("unchecked")
         T[] newArray = (T[]) new Object[array.length * 2];
         System.arraycopy(array, 0, newArray, 0, array.length);
         array = newArray;
+    }
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public ListIterator<T> listIterator() {
