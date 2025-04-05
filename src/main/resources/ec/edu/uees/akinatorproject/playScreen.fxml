@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -50,36 +51,66 @@
                         <Image url="@assets/classic/subMenuClassic-opciones.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblAsk" scaleX="4.0" scaleY="3.0" text="Pregunta?" translateX="128.0" translateY="100.0">
+                  <Label fx:id="lblAsk" alignment="CENTER" contentDisplay="CENTER" prefHeight="7.0" prefWidth="22.0" scaleX="35.0" scaleY="35.0" text="Pregunta?" textAlignment="CENTER" translateX="141.0" translateY="100.0" wrapText="true">
                      <font>
                         <Font size="8.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="siOption" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseSiOption" pickOnBounds="true" preserveRatio="true" scaleX="10.0" scaleY="10.0" translateX="-60.0" translateY="260.0">
-                     <image>
-                        <Image url="@assets/classic/subMenuClassic-siOption.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="noOption" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="10.0" scaleY="10.0" translateX="300.0" translateY="250.0">
-                     <image>
-                        <Image url="@assets/classic/subMenuClassic-noOption.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="clownHead" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="20.0" scaleY="20.0" translateX="121.0" translateY="225.0">
+                  <ImageView fx:id="clownHead" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="50.0" scaleY="50.0" translateX="121.0" translateY="399.0">
                      <image>
                         <Image url="@assets/sprites/clown_1.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="handSi" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="15.0" scaleY="15.0" translateX="-83.0" translateY="335.0">
+                  <ImageView fx:id="handSi" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="15.0" scaleY="15.0" translateX="-5.0" translateY="300.0">
                      <image>
                         <Image url="@assets/sprites/handSi.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="handNo" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="15.0" scaleY="15.0" translateX="310.0" translateY="325.0">
+                  <ImageView fx:id="handNo" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="15.0" scaleY="15.0" translateX="260.0" translateY="286.0">
                      <image>
                         <Image url="@assets/sprites/handNo.png" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="newCharacterBackground" disable="true" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" opacity="0.0" pickOnBounds="true" preserveRatio="true" scaleX="30.0" scaleY="12.0" translateX="121.0" translateY="300.0">
+                     <image>
+                        <Image url="@assets/retangle.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="noOption" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" pickOnBounds="true" preserveRatio="true" scaleX="10.0" scaleY="10.0" translateX="300.0" translateY="215.0">
+                     <image>
+                        <Image url="@assets/classic/subMenuClassic-noOption.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="siOption" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseSiOption" pickOnBounds="true" preserveRatio="true" scaleX="10.0" scaleY="10.0" translateX="-60.0" translateY="211.0">
+                     <image>
+                        <Image url="@assets/classic/subMenuClassic-siOption.png" />
+                     </image>
+                  </ImageView>
+                  <HBox fx:id="newCharacterHBox" disable="true" prefHeight="99.0" prefWidth="895.0">
+                     <children>
+                        <VBox minWidth="1.0" prefHeight="99.0" prefWidth="286.0">
+                           <children>
+                              <TextField fx:id="newCharacterTxtField" opacity="0.0" translateX="578.0" translateY="260.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="dissapear" disable="true" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseNoOption" opacity="0.0" pickOnBounds="true" preserveRatio="true" scaleX="140.0" scaleY="100.0" translateY="-39.0">
+                     <image>
+                        <Image url="@assets/classic/dissapear.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="sigBtn" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseSiOption" opacity="0.0" pickOnBounds="true" preserveRatio="true" scaleX="3.0" scaleY="3.0" translateX="576.0" translateY="-312.0">
+                     <image>
+                        <Image url="@assets/classic/sigButton.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="sigBtn1" fitHeight="10.0" fitWidth="10.0" onMouseClicked="#chooseSiOption" opacity="0.28" pickOnBounds="true" preserveRatio="true" scaleX="10.0" scaleY="5.0" translateX="546.0" translateY="-360.0">
+                     <image>
+                        <Image url="@assets/classic/dissapear.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="pageCount" scaleX="20.0" scaleY="20.0" text="00 / 00" translateX="550.0" translateY="-361.0" />
                </children></VBox>
          </children>
          <padding>

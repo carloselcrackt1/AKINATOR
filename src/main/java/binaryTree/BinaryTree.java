@@ -1,5 +1,10 @@
 package binaryTree;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import nodeG.node;
@@ -13,6 +18,7 @@ import questionAnswerClass.QAndA;
 public class BinaryTree <E> {
     private node<E> root;
     private GenericArrayList<Boolean> ruta;
+    private GenericArrayList<E> charactersAlive;
     private node<E> tmpRoot;
 
     public BinaryTree(node<E> root){
@@ -20,15 +26,33 @@ public class BinaryTree <E> {
         this.tmpRoot = root;
     }
 
-    public void add(E q, E r, Boolean ubiR){
-        if(q ==null && r == null) 
+    public void add(E q, E r, Boolean ubiR) {
+        if (q == null && r == null) 
             throw new UnsupportedOperationException("data nula");
-        else{
+        else {
             ListIterator<Boolean> rutaIteradora = ruta.listIterator();
-            this.root = add(q,r,this.root,rutaIteradora,ubiR);
+            this.root = add(q, r, this.root, rutaIteradora, ubiR);
+
+            try {
+                String basePath = System.getProperty("user.home") + "/Akinator/data";
+                File dir = new File(basePath);
+                if (!dir.exists()) dir.mkdirs();
+
+                File file = new File(dir, "tree.ser");
+
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+                    for (E e : posOrden()) {
+                        oos.writeObject(e);
+                    }
+                }
+
+                System.out.println("Archivo guardado correctamente en: " + file.getAbsolutePath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        
     }
+    
     private node<E> add(E p, E c, node<E> t, ListIterator<Boolean> decision,Boolean ubiR){
         if (!decision.hasNext()) { // aqui estamos en el ultimo nodo 
             node<E> temp = t;
@@ -51,13 +75,12 @@ public class BinaryTree <E> {
     }
 
     // funcion que me devolvera un arraylist en posOrden de los elementos del arbol(servira para actualizar el archivo)
-    public ArrayList<E> posOrden(){
-        ArrayList<E> treeList = new ArrayList<>();
+    public GenericArrayList<E> posOrden(){
+        GenericArrayList<E> treeList = new GenericArrayList<>();
         posOrden(this.root,treeList);
         return treeList;
     }
-    private void posOrden(node<E> p, ArrayList<E>treeList){
-        
+    private void posOrden(node<E> p, GenericArrayList<E>treeList){
         if(p!=null)
         {
             posOrden(p.left,treeList); 
@@ -80,6 +103,24 @@ public class BinaryTree <E> {
         }
     }
     
+    public GenericArrayList<E> getPosiblesAnswers(){
+        charactersAlive = new GenericArrayList<>();
+        getPosiblesAnswers(this.tmpRoot, charactersAlive);
+        return charactersAlive;
+    }
+    
+    public GenericArrayList<E> getPosiblesAnswers(node<E> p, GenericArrayList<E> gal){
+        if(p==null)
+            return null;
+        else if(p.left == null && p.right == null){
+            gal.add(p.data);
+            return gal;
+        }
+        getPosiblesAnswers(p.left,gal);
+        getPosiblesAnswers(p.right, gal);
+        return gal;
+    }
+    
     public void decisionJugador(Boolean decision){
         if (this.ruta == null){
             this.ruta = new GenericArrayList();
@@ -94,7 +135,6 @@ public class BinaryTree <E> {
     public GenericArrayList<Boolean> getRuta() {
         return ruta;
     }
-
     
 }
 

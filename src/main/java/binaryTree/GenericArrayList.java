@@ -148,4 +148,10 @@ public class GenericArrayList<T> implements Iterable<T> {
         };
     }
 
+    @Override
+    public String toString() {
+        return "GenericArrayList{" + "array=" + array + ", size=" + size + '}';
+    }
+
+    
 }

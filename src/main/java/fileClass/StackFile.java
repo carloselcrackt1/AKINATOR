@@ -1,7 +1,9 @@
 package fileClass;
 
-import java.io.BufferedReader;
 import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -17,21 +19,25 @@ public class StackFile {
     }
     
     public void fileReader() {
-        InputStream input = getClass().getResourceAsStream("/data/tree.ser");
-        try (ObjectInputStream ois = new ObjectInputStream(input)) {
+        String basePath = System.getProperty("user.home") + "/Akinator/data";
+        File file = new File(basePath, "tree.ser");
+
+        // Leer el archivo
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             while (true) {
                 try {
                     QAndA qAndA = (QAndA) ois.readObject();
+                    if (qAndA.isCharacter()) {
+                        System.out.println(qAndA.getCharacterName());
+                    }
                     lineProcess(qAndA);
                 } catch (EOFException e) {
                     break;
                 }
             }
-       }catch(IOException e){
-           e.printStackTrace();
-       }catch(ClassNotFoundException e){
-           e.printStackTrace();   
-       }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     
     private void lineProcess(QAndA qAndA) {

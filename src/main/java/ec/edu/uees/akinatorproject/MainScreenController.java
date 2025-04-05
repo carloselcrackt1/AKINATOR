@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
@@ -147,6 +148,7 @@ public class MainScreenController implements Initializable{
             Media media = new Media(urlv);
             this.mp = new MediaPlayer(media);
             balatroBackground.setMediaPlayer(mp);
+            mp.setCycleCount(1);
             mp.play();
 
             TranslateTransition t1 = new TranslateTransition();
@@ -185,47 +187,80 @@ public class MainScreenController implements Initializable{
             st.setCycleCount(TranslateTransition.INDEFINITE);
             st.play();
             
+            ArrayList<QAndA> qAndAs = new ArrayList<>();
+            
+        /*qAndAs.add(new QAndA("Judith Uruchima", "judith.png", true));
+        qAndAs.add(new QAndA("Paula Benalcazar", "paula.png", true));
+        qAndAs.add(new QAndA("Niurly Gorozabel", "niurly.png", true));
+        qAndAs.add(new QAndA("Se suele juntar con Lautaro?", "", false));
+        qAndAs.add(new QAndA("Tiene pelo liso?", "", false));
+        qAndAs.add(new QAndA("Daniel Argudo", "daniel.png", true));
+        qAndAs.add(new QAndA("Franklin Aguilar", "franklin.png", true));
+        qAndAs.add(new QAndA("Se suele juntar con Judith?", "", false));
+        qAndAs.add(new QAndA("Dylan Drouet", "dylan.png", true));
+        qAndAs.add(new QAndA("Ha trabajado en el Bco. Pacifico?", "", false));
+        qAndAs.add(new QAndA("Yull Bazurto", "yull.png", true));
+        qAndAs.add(new QAndA("Ha trabajado con respuestos de autos?", "", false));
+        qAndAs.add(new QAndA("Jorge Flores", "jorge.png", true));
+        qAndAs.add(new QAndA("Carlos Auqui", "carlos.png", true));
+        qAndAs.add(new QAndA("Ha trabajado en el Bco. Guayaquil?", "", false));
+        qAndAs.add(new QAndA("Rodrigo Braganza", "rodrigo.png", true));
+        qAndAs.add(new QAndA("Tiene el pelo muy largo?", "", false));
+        qAndAs.add(new QAndA("Usa Lentes?", "", false));
+        qAndAs.add(new QAndA("Steeven Mendoza", "steeven.png", true));
+        qAndAs.add(new QAndA("Hector Rugel", "hector.png", true));
+        qAndAs.add(new QAndA("Tiene los ojos claros?", "", false));
+        qAndAs.add(new QAndA("Ha usado Mac alguna vez?", "", false));
+        qAndAs.add(new QAndA("Luis Goncalves", "luis.png", true));
+        qAndAs.add(new QAndA("Carlos Gordillo", "enrique.png", true));
+        qAndAs.add(new QAndA("es rubio?", "", false));
+        qAndAs.add(new QAndA("Lautaro Arreaga", "lautaro.png", true));
+        qAndAs.add(new QAndA("Se suele juntar con Niurly?", "", false));
+        qAndAs.add(new QAndA("Le crece barba?", "", false));
+        qAndAs.add(new QAndA("Es hombre?", "", false));
+        qAndAs.add(new QAndA("Marcos Tapia", "tapia.png", true));
+        qAndAs.add(new QAndA("Eduardo Cruz", "eduardo.png", true));
+        qAndAs.add(new QAndA("Es profesor de la UEES?", "", false));
+        qAndAs.add(new QAndA("Kevin Roman", "kevin.png", true));
+        qAndAs.add(new QAndA("Le crece barba?", "", false));
+        qAndAs.add(new QAndA("Gabriel Guerrero", "gabriel.png", true));
+        qAndAs.add(new QAndA("Tiene el pelo muy largo?", "gabriel.png", false));
+        qAndAs.add(new QAndA("Fabian Rodas", "fabian.png", true));
+        qAndAs.add(new QAndA("Matias Sanchez", "matias.png", true));
+        qAndAs.add(new QAndA("Se suele sentar en el medio de la clase?", "", false));
+        qAndAs.add(new QAndA("Jesus Jimenez", "jesus.png", true));
+        qAndAs.add(new QAndA("Lo suelen llamar 'Yisus'?", "", false));
+        qAndAs.add(new QAndA("Suele usar lentes?", "", false));
+        qAndAs.add(new QAndA("Mide mas de 1.80?", "", false));
+        
+        guardarArchivoEnf(qAndAs);*/
         });
         
     }
     // GUARDAR EN EL .SER
     /*
-        ArrayList<QAndA> qAndAs = new ArrayList<>();
-        qAndAs.add(new QAndA("Judith Uruchima", "judith.png", true));
-        qAndAs.add(new QAndA("Paula Benalcazar", "paula.png", true));
-        qAndAs.add(new QAndA("¿Su pelo es liso?", "", false));
-        qAndAs.add(new QAndA("Carlos Auqui", "carlos.png", true));
-        qAndAs.add(new QAndA("Luis Goncalves", "luis.png", true));
-        qAndAs.add(new QAndA("¿Tiene Barba?", "", false));
-        qAndAs.add(new QAndA("¿Es hombre?", "", false));
-        qAndAs.add(new QAndA("Kevin Roman", "kevin.png", true));
-        qAndAs.add(new QAndA("Marcos Tapia", "paula.png", true));
-        qAndAs.add(new QAndA("¿Crees que vaya al gimnasio con frecuencia?", "", false));
-        qAndAs.add(new QAndA("Gabriel Guerrero", "gabriel.png", true));
-        qAndAs.add(new QAndA("¿Tiene cabello largo?", "", false));
-        qAndAs.add(new QAndA("Fabian Rodas", "", true));
-        qAndAs.add(new QAndA("Jesus Jimenez", "jesus.png", true));
-        qAndAs.add(new QAndA("¿Su contextura es delgada?", "", false));
-        qAndAs.add(new QAndA("¿Usa lentes?", "", false));
-        qAndAs.add(new QAndA("¿Mide más de 1.80?", "", false));
         
-        
-        guardarArchivoEnf(qAndAs);
         */
-    /*
-    public void guardarArchivoEnf(ArrayList<QAndA> qAndAs){
-        try{
-            String userDir = System.getProperty("user.dir");
-        userDir = userDir.replace("\\", "/");
-            FileOutputStream objetoFile = new FileOutputStream(userDir + "/src/main/resources/data/tree.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(objetoFile);
-            for(QAndA qAndA:qAndAs){ 
-                oos.writeObject(qAndA);
+    
+    /*public void guardarArchivoEnf(ArrayList<QAndA> qAndAs){
+        try {
+            String basePath = System.getProperty("user.home") + "/Akinator/data";
+            File dir = new File(basePath);
+            if (!dir.exists()) dir.mkdirs();
+
+            File file = new File(dir, "tree.ser");
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+                for (QAndA e : qAndAs) {
+                    oos.writeObject(e);
+                }
             }
-            oos.close();
-        }catch(IOException  e){
+
+            System.out.println("Archivo guardado correctamente en: " + file.getAbsolutePath());
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
     */
 }

@@ -7,6 +7,6 @@
     -fx-background-color:rgb(0, 0, 0);
 }
 .label{
-    -fx-font: 15px 'balatro';
+    -fx-font: 1px 'balatro';
     -fx-text-fill: white;
 }
